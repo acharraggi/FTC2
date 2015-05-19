@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FTC2</string>
+
+    <string name="hello_world">Select from following list:</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="button_battery">Battery Level</string>
+    <string name="title_activity_display_battery_level">Battery Level</string>
+    <string name="battery_level">Battery Lvl</string>
+</resources>
