@@ -17,6 +17,13 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Wifi info button */
+    public void displayWifi(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayWifi.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

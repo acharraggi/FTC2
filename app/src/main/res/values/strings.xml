@@ -6,5 +6,8 @@
 
     <string name="button_battery">Battery Level</string>
     <string name="title_activity_display_battery_level">Battery Level</string>
-    <string name="battery_level">Battery Lvl</string>
+
+    <string name="button_wifi">WIFI</string>
+    <string name="title_activity_display_wifi">Wifi Info</string>
+
 </resources>
