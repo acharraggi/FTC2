@@ -10,4 +10,6 @@
     <string name="button_wifi">WIFI</string>
     <string name="title_activity_display_wifi">Wifi Info</string>
 
+    <string name="button_sensors">Sensors</string>
+    <string name="title_activity_sensor">Sensor Activity</string>
 </resources>

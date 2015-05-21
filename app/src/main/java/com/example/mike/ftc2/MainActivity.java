@@ -24,6 +24,13 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Sensor info button */
+    public void displaySensor(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplaySensor.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
