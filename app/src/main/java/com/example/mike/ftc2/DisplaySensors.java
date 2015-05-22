@@ -10,13 +10,15 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
-public class DisplaySensor extends ActionBarActivity {
+public class DisplaySensors extends ActionBarActivity {
 
     SensorManager smm;
     List<Sensor> sensor;
+    List<String> sSensor = new LinkedList<String>();;
     ListView lv;
 
     @Override
@@ -26,8 +28,13 @@ public class DisplaySensor extends ActionBarActivity {
         smm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         lv = (ListView) findViewById (R.id.listView);
         sensor = smm.getSensorList(Sensor.TYPE_ALL);
-        lv.setAdapter(new ArrayAdapter<Sensor>(this, android.R.layout.simple_list_item_1,  sensor));
-
+        for (Sensor temp : sensor) {
+            //if (temp == null) {
+                sSensor.add(temp.toString() + "   sensor type: " + temp.getType());
+            //}
+        }
+        //lv.setAdapter(new ArrayAdapter<Sensor>(this, android.R.layout.simple_list_item_1,  sensor));
+        lv.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,  sSensor));
     }
 
 //    @Override

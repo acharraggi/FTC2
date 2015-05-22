@@ -12,4 +12,7 @@
 
     <string name="button_sensors">Sensors</string>
     <string name="title_activity_sensor">Sensor Activity</string>
+
+    <string name="button_orientation">Orientation Sensor</string>
+    <string name="title_activity_display_orientation">Display Orientation</string>
 </resources>

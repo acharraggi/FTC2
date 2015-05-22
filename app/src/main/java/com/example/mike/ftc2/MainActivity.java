@@ -27,7 +27,14 @@ public class MainActivity extends ActionBarActivity {
     /** Called when the user clicks the Sensor info button */
     public void displaySensor(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplaySensor.class);
+        Intent intent = new Intent(this, DisplaySensors.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user clicks the Orientation button */
+    public void displayOrientation(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayOrientation.class);
         startActivity(intent);
     }
 

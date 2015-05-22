@@ -3,6 +3,7 @@
     package="com.example.mike.ftc2" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -35,8 +36,16 @@
                 android:value="com.example.mike.ftc2.MainActivity" />
         </activity>
         <activity
-            android:name=".DisplaySensor"
+            android:name=".DisplaySensors"
             android:label="@string/title_activity_sensor"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mike.ftc2.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DisplayOrientation"
+            android:label="@string/title_activity_display_orientation"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
