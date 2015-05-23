@@ -8,6 +8,7 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+// make list fancier: http://eureka.ykyuen.info/2010/01/03/android-simple-listview-using-simpleadapter/
 
 public class DisplayWifiScan extends ActionBarActivity implements View.OnClickListener {
     WifiManager wifi;
@@ -30,7 +32,11 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
     int size = 0;
     List<ScanResult> results;
 
-    String ITEM_KEY = "key";
+    //String ITEM_KEY = "key";
+    // create the grid item mapping
+    String[] from = new String[] {"SSID", "frequency", "channel", "strength"};
+    int[] to = new int[] { R.id.SSID, R.id.frequency, R.id.channel, R.id.strength };
+
     ArrayList<HashMap<String, String>> arraylist = new ArrayList<HashMap<String, String>>();
     SimpleAdapter adapter;
 
@@ -50,7 +56,8 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
             Toast.makeText(getApplicationContext(), "wifi is disabled..making it enabled", Toast.LENGTH_LONG).show();
             wifi.setWifiEnabled(true);
         }
-        this.adapter = new SimpleAdapter(DisplayWifiScan.this, arraylist, R.layout.row, new String[] { ITEM_KEY }, new int[] { R.id.list_value });
+        //this.adapter = new SimpleAdapter(DisplayWifiScan.this, arraylist, R.layout.row, new String[] { ITEM_KEY }, new int[] { R.id.list_value });
+        this.adapter = new SimpleAdapter(DisplayWifiScan.this, arraylist, R.layout.row, from, to);
         lv.setAdapter(this.adapter);
 
         registerReceiver(new BroadcastReceiver() {
@@ -81,13 +88,28 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
         Toast.makeText(this, "Scanning...." + size, Toast.LENGTH_SHORT).show();
         try
         {
+            // add column headers
+            {
+                HashMap<String, String> item = new HashMap<String, String>();
+                item.put("SSID", "SSID");
+                item.put("frequency", "Frequency");
+                item.put("channel", "Channel");
+                item.put("strength", "Strength");
+                arraylist.add(item);
+                adapter.notifyDataSetChanged();
+            }
+
             size = size - 1;
             while (size >= 0)
             {
                 HashMap<String, String> item = new HashMap<String, String>();
-                item.put(ITEM_KEY, results.get(size).SSID + ",   Frequency: " + results.get(size).frequency + ",   Channel: "+ convertFrequencyToChannel(results.get(size).frequency) + ",   Strength: " + WifiManager.calculateSignalLevel(results.get(size).level,5));
-
+                //item.put(ITEM_KEY, results.get(size).SSID + ",   Frequency: " + results.get(size).frequency + ",   Channel: "+ convertFrequencyToChannel(results.get(size).frequency) + ",   Strength: " + WifiManager.calculateSignalLevel(results.get(size).level,5));
+                item.put("SSID", results.get(size).SSID);
+                item.put("frequency", "" + results.get(size).frequency);
+                item.put("channel", ""+convertFrequencyToChannel(results.get(size).frequency));
+                item.put("strength", ""+WifiManager.calculateSignalLevel(results.get(size).level, 5));
                 arraylist.add(item);
+
                 size--;
                 adapter.notifyDataSetChanged();
             }
