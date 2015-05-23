@@ -15,4 +15,10 @@
 
     <string name="button_orientation">Orientation Sensor</string>
     <string name="title_activity_display_orientation">Display Orientation</string>
+
+    <string name="button_wifi_scan">WIFI scan</string>
+    <string name="title_activity_display_wifi_scan">Display Wifi Scan</string>
+    <string name="wifi_scan_header">Wifi scan of nearby networks</string>
+
+    <string name="button_scan">Scan for WIFI networks</string>
 </resources>
