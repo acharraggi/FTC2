@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -64,6 +66,12 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
             @Override
             public void onReceive(Context c, Intent intent) {
                 results = wifi.getScanResults();
+                Collections.sort(results, new Comparator<ScanResult>() {
+                    @Override
+                    public int compare(final ScanResult object1, final ScanResult object2) {
+                        return ( object1.level - object2.level); // sort descending order
+                    }
+                });
                 size = results.size();
             }
         }, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
@@ -105,9 +113,9 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
                 HashMap<String, String> item = new HashMap<String, String>();
                 //item.put(ITEM_KEY, results.get(size).SSID + ",   Frequency: " + results.get(size).frequency + ",   Channel: "+ convertFrequencyToChannel(results.get(size).frequency) + ",   Strength: " + WifiManager.calculateSignalLevel(results.get(size).level,5));
                 item.put("SSID", results.get(size).SSID);
-                item.put("frequency", "" + results.get(size).frequency);
-                item.put("channel", ""+convertFrequencyToChannel(results.get(size).frequency));
-                item.put("strength", ""+WifiManager.calculateSignalLevel(results.get(size).level, 5));
+                item.put("frequency", Integer.toString(results.get(size).frequency));
+                item.put("channel", Integer.toString(convertFrequencyToChannel(results.get(size).frequency)));
+                item.put("strength", Integer.toString(WifiManager.calculateSignalLevel(results.get(size).level, 5)));
                 arraylist.add(item);
 
                 size--;
