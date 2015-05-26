@@ -38,10 +38,17 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Orientation button */
+    /** Called when the user clicks the wifi scan button */
     public void displayWifiScan(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayWifiScan.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user clicks the wifi channels button */
+    public void displayWifiChannels(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, DisplayWifiChannels.class);
         startActivity(intent);
     }
 
