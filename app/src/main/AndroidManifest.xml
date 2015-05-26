@@ -61,6 +61,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.mike.ftc2.MainActivity" />
         </activity>
+        <activity
+            android:name=".DisplayWifiChannels"
+            android:label="@string/title_activity_display_wifi_channels"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mike.ftc2.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

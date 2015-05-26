@@ -21,4 +21,6 @@
     <string name="wifi_scan_header">Wifi scan of nearby networks</string>
 
     <string name="button_scan">Scan for WIFI networks</string>
+    <string name="button_wifi_channels">Scan for Wifi Channels</string>
+    <string name="title_activity_display_wifi_channels">Display Wifi Channels</string>
 </resources>
