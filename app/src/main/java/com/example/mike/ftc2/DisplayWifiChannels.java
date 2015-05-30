@@ -8,10 +8,12 @@ import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.internal.widget.AdapterViewCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -32,7 +34,7 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
     Button buttonScan;
     int size = 0;
     List<ScanResult> results;
-    int[][] channels = new int[12][2];  // store invalid channels in row 0
+    int[][] channels = new int[15][2];  // store invalid channels in row 0
     // store count in column[0] and strength in colum[1]
 
     // create the grid item mapping
@@ -62,6 +64,15 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
         //this.adapter = new SimpleAdapter(DisplayWifiScan.this, arraylist, R.layout.row, new String[] { ITEM_KEY }, new int[] { R.id.list_value });
         this.adapter = new SimpleAdapter(DisplayWifiChannels.this, arraylist, R.layout.channel_row, from, to);
         lv.setAdapter(this.adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Toast.makeText(getApplicationContext(), "onItemClick: position: " + position + ", id: " + id,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         registerReceiver(new BroadcastReceiver() {
             @Override
@@ -82,8 +93,10 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
     private static int convertFrequencyToChannel(int freq) {
         // only handles channels 1-11, 12-14 are generally not usable in North America
         // don't bother with 5000+ freq
-        if (freq >= 2412 && freq <= 2484) {
+        if (freq >= 2412 && freq <= 2472) {
             return (freq - 2412) / 5 + 1;
+        } else if (freq == 2484) {  // had to fix for 14
+            return 14;
        // } else if (freq >= 5170 && freq <= 5825) {
        //     return (freq - 5170) / 5 + 34;
         } else {
@@ -91,8 +104,7 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
         }
     }
 
-    public void onClick(View view)
-    {
+    private void getScanList() {
         arraylist.clear();
         wifi.startScan();
 
@@ -126,7 +138,7 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
             }
 
             if (size > 0) {
-                for(int i = 1; i<12; i++){  // do normal channels
+                for(int i = 1; i<15; i++){  // do normal channels
                     HashMap<String, String> item = new HashMap<String, String>();
                     item.put("channel", Integer.toString(i));
                     item.put("count", Integer.toString(channels[i][0]));
@@ -147,6 +159,21 @@ public class DisplayWifiChannels extends ActionBarActivity implements View.OnCli
         }
         catch (Exception e)
         { }
+    }
+
+    public void onClick(View view)
+    {
+        switch(view.getId()) {
+            case R.id.buttonScan:
+                // it was the button
+                getScanList();
+                break;
+            case R.id.list_item:
+                // it was the list
+                Toast.makeText(this, "List was clicked....", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
     }
 
 //    @Override
