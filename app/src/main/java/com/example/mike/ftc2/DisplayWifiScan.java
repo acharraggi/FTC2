@@ -100,7 +100,7 @@ public class DisplayWifiScan extends ActionBarActivity implements View.OnClickLi
             {
                 HashMap<String, String> item = new HashMap<String, String>();
                 item.put("SSID", "SSID");
-                item.put("frequency", "Frequency");
+                item.put("frequency", "Freq.");
                 item.put("channel", "Channel");
                 item.put("strength", "Strength");
                 arraylist.add(item);
