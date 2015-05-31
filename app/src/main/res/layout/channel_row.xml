@@ -4,26 +4,26 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/channel"
-        android:width="100dip"
+        android:width="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        android:textSize="20px" >
+        android:textSize="15sp" >
     </TextView>
     <TextView
         android:id="@+id/count"
-        android:width="150dip"
+        android:width="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        android:textSize="20px" >
+        android:textSize="15sp" >
     </TextView>
     <TextView
         android:id="@+id/strength"
-        android:width="100dip"
+        android:width="100dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@+id/label"
-        android:textSize="20px" >
+        android:textSize="15sp" >
     </TextView>
 </LinearLayout>
